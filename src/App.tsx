@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useWriteContract, useAccount, useConfig } from 'wagmi';
+import { useWriteContract, useAccount, useConfig, useBlockNumber } from 'wagmi';
 import { waitForTransactionReceipt } from '@wagmi/core';
 import { parseEther, parseUnits, parseAbi } from 'viem';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
@@ -15,6 +15,7 @@ const ABI = parseAbi([
 export default function App() {
   const { isConnected, chain, address } = useAccount();
   const config = useConfig();
+  const { data: blockNumber } = useBlockNumber();
   const [activeTab, setActiveTab] = useState<'send' | 'history'>('send');
   const [isProcessing, setIsProcessing] = useState(false);
   const [history, setHistory] = useState<any[]>([]);
@@ -168,6 +169,7 @@ export default function App() {
                 <div className="space-y-3 text-sm opacity-80">
                   <div className="flex justify-between"><span>Chain</span><span className="font-mono">Base Mainnet</span></div>
                   <div className="flex justify-between"><span>Status</span><span className="flex items-center gap-1"><div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" /> Operational</span></div>
+                  <div className="flex justify-between"><span>Block Number</span><span className="font-mono">{blockNumber?.toString() || 'Loading...'}</span></div>
                 </div>
               </div>
               <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
