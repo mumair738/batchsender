@@ -100,7 +100,7 @@ BaseScan – Contract verification
 
 ⚙️ Installation & Setup
 1️⃣ Clone the Repository
-git clone https://github.com/your-username/batch-sender
+git clone https://github.com/mumair738/batchsender.git
 cd batch-sender
 
 2️⃣ Install Dependencies
